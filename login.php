@@ -5,7 +5,10 @@
 //var_dump ($_POST);
 
  //$_POST["sighupEmail"]
+// $_POST["signupPassword"]
+
 $sighupEmailError = "";
+$sighupPasswordError = "";
  //kas on üldse olemas selline muutuja
 if(isset($_POST["sighupEmail"])){
 	//jah on olemas
@@ -13,6 +16,24 @@ if(isset($_POST["sighupEmail"])){
 	if(empty($_POST["sighupEmail"])){
 		$sighupEmailError = "See väli on kohustuslik";	
 	}
+}
+
+if(isset($_POST["signupPassword"])) {
+	
+	if(empty($_POST["signupPassword"])){
+		$sighupPasswordError = "Parool peab olema";
+	
+	} else {
+		//Siia jõuan siis kui parool on olemas ja kui parool ei ole tühi
+		//kas parooli pikkus on väiksem kui kaheksa
+		if (strlen($_POST["signupPassword"]) < 8) {
+			
+			$sighupPasswordError = "Parool peab olema vähemalt 8 tähemärki pikk";
+			
+		}
+		
+	}
+	
 }
 ?>
 
@@ -28,7 +49,7 @@ if(isset($_POST["sighupEmail"])){
 	
 		<label>E-post</label>
 		<br>
-		<input name="loginWmail" type="text">
+		<input name="loginEmail" type="text">
 			<br>
 			<br>
 		<input name="loginPassword" placeholder="Parool" type="password"> <br><br>
@@ -44,7 +65,7 @@ if(isset($_POST["sighupEmail"])){
 		<input name="sighupEmail" type="text"> <?php echo $sighupEmailError; ?>
 			<br>
 			<br>
-		<input name="sPassword" placeholder="Parool" type="password"> <br><br>
+		<input name="signupPassword" placeholder="Parool" type="password"> <?php echo $sighupPasswordError; ?> <br><br>
 		<input type="submit" value="Loo kasutaja">
 	
 	</form>
