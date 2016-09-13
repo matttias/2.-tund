@@ -20,3 +20,11 @@ for ($i = 1; $i <= $age; $i++){
 }
 echo "õnne!";
 ?>
+
+<br>
+
+<?php
+
+echo date("d.m.y.H:i");
+
+?>
